@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#122b46"><title>Denah Kursi Bus</title><link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header class="topbar">
+ <div class="brand"><span class="eyebrow">SISTEM DENAH PERJALANAN</span><h1>Denah Kursi Bus</h1><p>Informasi tempat duduk perjalanan</p></div>
+ <div class="header-actions"><span id="connection" class="connection"><i></i> Memuat data…</span><button id="adminOpen" class="btn outline">Login Admin</button></div>
+</header>
+<main>
+ <section class="toolbar">
+  <div><strong id="seatCount">59 kursi</strong><span class="muted"> · Pilih kursi untuk melihat informasi</span></div>
+  <div class="legend"><span><i class="dot available"></i>Kosong</span><span><i class="dot filled"></i>Terisi</span><span><i class="dot reserved"></i>Khusus</span></div>
+ </section>
+ <section class="bus-wrap">
+  <div class="bus" id="bus">
+   <div class="front"><div>PINTU / KERNET</div><div class="tl">TL</div><div>SUPIR</div></div>
+   <div id="seatGrid" class="seat-grid" aria-label="Denah kursi"></div>
+   <div class="rear"><div class="rear-door">PINTU</div><div class="back-right" id="backRight"></div></div>
+   <div id="backRow" class="back-row"></div>
+  </div>
+ </section>
+ <section class="bottom-bar"><p id="lastUpdated">Data denah ditampilkan untuk seluruh pengunjung.</p><button class="btn outline" id="printBtn"><span aria-hidden="true">⎙</span> Cetak / Simpan PDF</button></section>
+ <p class="footnote">Untuk perubahan data, silakan hubungi admin perjalanan.</p>
+</main>
+<div id="detailModal" class="modal" aria-hidden="true"><div class="modal-card"><button class="x" data-close="detailModal" aria-label="Tutup">×</button><h2 id="detailTitle">Kursi</h2><p id="detailInfo"></p><button class="btn full" data-close="detailModal">Tutup</button></div></div>
+<div id="adminModal" class="modal" aria-hidden="true"><div class="modal-card admin-card"><button class="x" data-close="adminModal" aria-label="Tutup">×</button><h2>Panel Admin</h2>
+ <div id="loginPanel"><p class="muted">Masuk menggunakan akun admin yang sudah didaftarkan.</p><label>Email<input id="email" type="email" autocomplete="username" placeholder="admin@email.com"></label><label>Password<input id="password" type="password" autocomplete="current-password" placeholder="Password"></label><button id="loginBtn" class="btn full">Login</button><p id="loginMsg" class="message" role="status"></p></div>
+ <div id="editorPanel" hidden>
+  <div class="admin-head"><span class="pill">Admin aktif</span><button id="logoutBtn" class="btn outline small">Logout</button></div>
+  <p class="muted">Klik kursi pada denah, lalu ubah informasinya.</p>
+  <label>Nomor kursi<input id="editNumber" disabled placeholder="Pilih kursi pada denah"></label>
+  <label>Nama penumpang / keterangan<input id="editName" placeholder="Kosongkan jika belum diisi"></label>
+  <label>Status<select id="editStatus"><option value="available">Kosong</option><option value="filled">Terisi</option><option value="reserved">Khusus</option></select></label>
+  <label>Warna kursi<select id="editColor"><option value="">Otomatis sesuai status</option><option value="green">Hijau</option><option value="yellow">Kuning</option><option value="peach">Jingga muda</option></select></label>
+  <button id="saveSeat" class="btn full">Simpan perubahan</button><button id="clearSeat" class="btn danger full">Kosongkan kursi</button><p id="saveMsg" class="message" role="status"></p>
+  <hr><button id="exportBtn" class="btn outline full">Unduh cadangan JSON</button><label class="file-label">Impor data JSON<input id="importFile" type="file" accept=".json,application/json"></label>
+ </div>
+ <div class="config-note">Jika database belum dihubungkan, ikuti petunjuk pada README.md.</div>
+</div></div>
+<script src="app.js"></script>
+</body></html>
