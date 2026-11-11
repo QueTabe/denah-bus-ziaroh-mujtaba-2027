@@ -717,3 +717,42 @@ hr {
         display: none !important;
     }
 }
+
+/* 21. TIMELINE PERJALANAN - CSS terisolasi */
+.journey-section{width:min(920px,calc(100% - 36px));margin:26px auto 44px;padding:26px;background:#fff;border:1px solid #e1e8f0;border-radius:18px;box-shadow:0 12px 35px #23354b0c}
+.journey-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-bottom:20px;border-bottom:1px solid #e8edf3}
+.journey-eyebrow{color:#2872aa;font-size:10px;font-weight:850;letter-spacing:1.8px}
+.journey-heading h2{margin:5px 0 4px;color:#172f4b;font-size:clamp(20px,3vw,27px)}
+.journey-heading p,.journey-day-heading p{margin:0;color:#758196;font-size:13px}
+.journey-total{padding:8px 12px;border-radius:30px;background:#eaf3fb;color:#245d8d;font-size:12px;font-weight:800;white-space:nowrap}
+.journey-day{margin-top:23px}
+.journey-day-heading{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.journey-day-number{display:grid;place-items:center;width:39px;height:39px;flex:0 0 39px;border-radius:12px;background:#173b5e;color:#fff;font-size:13px;font-weight:850}
+.journey-day-heading h3{margin:0 0 3px;color:#1d344d;font-size:16px}
+.journey-list{position:relative;margin-left:19px;padding-left:28px;border-left:2px solid #dce7f1}
+.journey-item{position:relative;display:grid;grid-template-columns:116px minmax(0,1fr);gap:14px;padding:0 0 17px}
+.journey-item:last-child{padding-bottom:2px}
+.journey-item:before{content:"";position:absolute;left:-35px;top:4px;width:12px;height:12px;border:3px solid #fff;border-radius:50%;background:#4c91c5;box-shadow:0 0 0 1px #4c91c5}
+.journey-time{color:#2872aa;font-size:12px;font-weight:850;font-variant-numeric:tabular-nums;line-height:1.5}
+.journey-detail h4{margin:0;color:#26374b;font-size:13px;line-height:1.45}
+.journey-detail p{margin:3px 0 0;color:#758196;font-size:12px}
+.journey-note{display:inline-block;margin-top:5px;padding:3px 8px;border-radius:20px;background:#fff5df;color:#8a641c;font-size:10px;font-weight:750}
+.journey-footnote{margin:22px 0 0;padding:12px 14px;border-radius:10px;background:#f4f7fa;color:#69788b;font-size:11px;line-height:1.6}
+@media(max-width:600px){.journey-section{width:calc(100% - 24px);margin:20px auto 32px;padding:18px 14px;border-radius:14px}.journey-heading{align-items:flex-start}.journey-total{padding:6px 9px;font-size:10px}.journey-list{margin-left:12px;padding-left:22px}.journey-item{grid-template-columns:94px minmax(0,1fr);gap:9px}.journey-item:before{left:-29px}.journey-time{font-size:11px}.journey-detail h4{font-size:12px}}
+/* Cetak denah tetap seperti sebelumnya; timeline disembunyikan saat print. */
+@media print{.journey-section{display:none!important}}
+
+/* Tautan Google Maps pada setiap tujuan ziarah */
+.journey-map-link{display:inline-flex;align-items:center;gap:4px;margin-top:5px;color:#1769aa;font-size:11px;font-weight:750;text-decoration:none}
+.journey-map-link:hover{text-decoration:underline;color:#0e4f86}
+.journey-map-link:focus-visible{outline:2px solid #2872aa;outline-offset:3px;border-radius:3px}
+@media print{.journey-map-link{color:#1769aa}}
+
+/* Judul tujuan dan tautan Google Maps sejajar */
+.journey-title-row{display:flex;align-items:center;flex-wrap:wrap;column-gap:10px;row-gap:3px}
+.journey-title-row h4{margin:0}
+.journey-title-row .journey-map-link{margin-top:0;flex:0 0 auto;font-size:10px;white-space:nowrap}
+@media(max-width:600px){
+  .journey-title-row{column-gap:8px}
+  .journey-title-row .journey-map-link{font-size:10px}
+}
