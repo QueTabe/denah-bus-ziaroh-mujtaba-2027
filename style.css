@@ -531,6 +531,11 @@ input:disabled {
     color: #a33;
 }
 
+/* Pesan berhasil disimpan */
+.message.success {
+    color: #16a34a;
+}
+
 
 /* =========================================
    18. IMPOR DAN EKSPOR DATA
