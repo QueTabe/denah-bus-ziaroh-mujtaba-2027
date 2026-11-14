@@ -275,7 +275,7 @@ function chooseSeat(number) {
 
     const seat = seats[number];
 
-    // Jika admin sudah login, tampilkan data kursi di formulir edit.
+    // Jika admin sudah login, langsung buka formulir kursi yang dipilih.
     if (isAdmin) {
         $("editNumber").value = number;
         $("editName").value = seat.name;
@@ -283,6 +283,10 @@ function chooseSeat(number) {
         $("editColor").value = seat.color || "";
 
         setSaveMessage("");
+        showModal("adminModal");
+
+        // Arahkan fokus ke kolom nama agar admin bisa langsung mengetik.
+        $("editName").focus();
         return;
     }
 
@@ -657,7 +661,16 @@ $("saveSeat").onclick = saveSeat;
 
 // Tombol kosongkan kursi.
 $("clearSeat").onclick = () => {
-    if (!selected) return;
+    if (!selected) {
+        setSaveMessage("Pilih kursi yang ingin dikosongkan terlebih dahulu.");
+        return;
+    }
+
+    const confirmed = window.confirm(
+        `Yakin ingin mengosongkan kursi ${selected}? Nama penumpang pada kursi ini akan dihapus.`
+    );
+
+    if (!confirmed) return;
 
     $("editName").value = "";
     $("editStatus").value = "available";
